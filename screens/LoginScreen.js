@@ -2,11 +2,14 @@ import { setStatusBarBackgroundColor } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Card from '../components/Card';
+import Colors from '../constants/colors';
+import Inputs from '../components/Input';
 
 //export default function App()
 
+//Set Input.js to textInputs
 
-const App = props => {
+const Login = props => {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -14,13 +17,14 @@ const App = props => {
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>Bring Your Own Cup</Text>
-      <Card style={styles.inputView} >
-        <TextInput
-          style={styles.inputText}
+
+      
+      <Inputs style={styles.inputView}
           placeholder="Username..."
-          placeholderTextColor="#003f5c"
-          onChangeText={text => setUsername(text)} />
-      </Card>
+          placeholderTextColor='#003f5c'
+          onChangeText={text => setUsername(text)}
+      />
+
       <Card style={styles.inputView} >
         <TextInput
           secureTextEntry
@@ -62,24 +66,21 @@ const styles = StyleSheet.create({
   inputView: {
     width: "80%",
     borderRadius: 25,
-    
     height: 50,
     marginBottom: 20,
     justifyContent: "center",
-
   },
   inputText: {
     height: 50,
     color: "black",
-
   },
   forgot: {
     color: "black",
-  
+
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: "#FFC061",
+    backgroundColor: Colors.primary,
     borderRadius: 25,
     height: 50,
     alignItems: "center",
@@ -95,13 +96,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "80%",
     //justifyContent: "space-between",
-    
+
     paddingHorizontal: 15
   },
   text: {
     color: 'black'
   }
 
-});
+}); 
 
-export default App;
+export default Login;
