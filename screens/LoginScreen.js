@@ -5,6 +5,7 @@ import Card from '../components/Card';
 import Colors from '../constants/colors';
 import Inputs from '../components/Input';
 
+
 //export default function App()
 
 //Set Input.js to textInputs
@@ -33,6 +34,7 @@ const Login = props => {
           placeholderTextColor="#003f5c"
           onChangeText={text => setPassword(text)} />
       </Card>
+
       <TouchableOpacity style={styles.loginBtn}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
