@@ -1,9 +1,10 @@
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 import Inputs from '../components/Input';
+
 
 
 //export default function App()
@@ -35,9 +36,12 @@ const Login = props => {
           onChangeText={text => setPassword(text)} />
       </Card>
 
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>LOGIN</Text>
-      </TouchableOpacity>
+      <Button
+          style={styles.loginBtn}
+          title= "Login"
+          onPress={() => props.navigation.navigate('HomePage') }
+      />
+
       <View style={styles.textsContainer}>
         <TouchableOpacity>
           <Text style={styles.loginText}>Sign up</Text>
