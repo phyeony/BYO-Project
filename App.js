@@ -4,7 +4,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Colors from './constants/colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import LoginScreen from './screens/LoginScreen';
 import HomePageScreen from './screens/HomePageScreen';
@@ -70,32 +72,49 @@ function getHeaderTitle(route) {
 const createBottomTabs = () => {
   return <Tabs.Navigator
     initialRouteName="Home"
-    tabBarOptions={{
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-    }}
+    activeColor= {Colors.primary}
+    inactiveColor= 'grey'
+    barStyle= {{backgroundColor: 'white'}}
   >
     <Tabs.Screen
       name="Rewards"
       component={RewardsStackScreen}
+      options={{
+        tabBarLabel: 'Rewards',
+        tabBarIcon: ({ color }) => (
+          <FontAwesome name="star" size={26} color={color} />
+        ),
+      }}
     />
     <Tabs.Screen
       name="Home"
       component={HomeStackScreen}
       options={{
         tabBarLabel: 'Home',
-        tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="home" color={color} size={size} />
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="home" color={color} size={26} />
         ),
       }}
     />
     <Tabs.Screen
       name="Location"
       component={LocationScreen}
+      options={{
+        tabBarLabel: 'Location',
+        tabBarIcon: ({ color }) => (
+          <MaterialIcons name="location-on" size={26} color={color} />
+        ),
+      }}
     />
     <Tabs.Screen
       name="Setting"
       component={SettingStackScreen}
+      options={{
+        tabBarLabel: 'Setting',
+        tabBarIcon: ({ color }) => (
+          <Ionicons name="md-settings" size={26} color={color} />
+        ),
+      }}
     />
   </Tabs.Navigator >
 }
