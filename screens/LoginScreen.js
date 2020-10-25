@@ -1,9 +1,10 @@
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 import Inputs from '../components/Input';
+
 
 
 //export default function App()
@@ -20,11 +21,19 @@ const Login = props => {
       <Text style={styles.logo}>Bring Your Own Cup</Text>
 
       
-      <Inputs style={styles.inputView}
+      <Inputs //style={styles.inputView}
+         // placeholder="Username..."
+         // placeholderTextColor='#003f5c'
+          //onChangeText={text => setUsername(text)}
+      />
+      <Card style={styles.inputView} >
+        <TextInput
+          
+          style={styles.inputText}
           placeholder="Username..."
           placeholderTextColor='#003f5c'
-          onChangeText={text => setUsername(text)}
-      />
+          onChangeText={text => setUsername(text)}/>
+      </Card>
 
       <Card style={styles.inputView} >
         <TextInput
@@ -35,9 +44,15 @@ const Login = props => {
           onChangeText={text => setPassword(text)} />
       </Card>
 
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>LOGIN</Text>
+      <TouchableOpacity
+          style={styles.loginBtn}
+          onPress={() => props.navigation.navigate('Bottom Tabs') }
+      >
+          <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
+     
+
+
       <View style={styles.textsContainer}>
         <TouchableOpacity>
           <Text style={styles.loginText}>Sign up</Text>
