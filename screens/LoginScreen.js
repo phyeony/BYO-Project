@@ -21,11 +21,19 @@ const Login = props => {
       <Text style={styles.logo}>Bring Your Own Cup</Text>
 
       
-      <Inputs style={styles.inputView}
+      <Inputs //style={styles.inputView}
+         // placeholder="Username..."
+         // placeholderTextColor='#003f5c'
+          //onChangeText={text => setUsername(text)}
+      />
+      <Card style={styles.inputView} >
+        <TextInput
+          
+          style={styles.inputText}
           placeholder="Username..."
           placeholderTextColor='#003f5c'
-          onChangeText={text => setUsername(text)}
-      />
+          onChangeText={text => setUsername(text)}/>
+      </Card>
 
       <Card style={styles.inputView} >
         <TextInput
@@ -36,11 +44,14 @@ const Login = props => {
           onChangeText={text => setPassword(text)} />
       </Card>
 
-      <Button
+      <TouchableOpacity
           style={styles.loginBtn}
-          title= "Login"
-          onPress={() => props.navigation.navigate('HomePage') }
-      />
+          onPress={() => props.navigation.navigate('Bottom Tabs') }
+      >
+          <Text style={styles.loginText}>LOGIN</Text>
+      </TouchableOpacity>
+     
+
 
       <View style={styles.textsContainer}>
         <TouchableOpacity>
