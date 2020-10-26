@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Text, ScrollView, Image } from 'rea
 import { Button } from 'react-native-paper';
 import Colors from '../constants/colors';
 import Card from '../components/Card';
-import Coffeecup from '../assets/coffeeCupImg.png';
+
 
 const HomePage = props => {
     return (
