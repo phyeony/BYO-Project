@@ -9,8 +9,17 @@ const HomePage = props => {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <View style={styles.cupView}>
-                    <Image  source={require("../assets/coffeeCupImg.png")}></Image>
+                <View style={styles.firstView}>
+                    <View style={{marginLeft: 20}}>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.numberOfCupsLeft}>4</Text>
+                            <Image style={styles.cupStyle} source={require("../assets/coffee_cup.png")}></Image>
+                        </View>
+                        <Text style={{fontSize: 20, fontWeight:'900'}}>Until Next Tree</Text>
+                        <Text style={{color: '#8CC63F',fontSize: 15, fontWeight:'500'}}>You've planted 3 trees so far!</Text>
+                    </View>
+                    <Image style={styles.treeStyle} source={require("../assets/tree_img.png")}></Image>
+
                 </View>
 
                 <TouchableOpacity style={styles.rewardsView} >
@@ -92,15 +101,33 @@ const styles = StyleSheet.create({
 
 
     },
-    cupView: {
+    firstView: {
         flex: 1,
+        flexDirection: 'row',
         height: 200,
+
         backgroundColor: 'rgba(255, 192, 97, 0.3)',
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        
 
     },
-   
+    textContainer: {
+        flexDirection: 'row',
+    },
+    treeStyle: {
+        marginRight: 30
+        
+    },
+    numberOfCupsLeft: {
+        fontSize: 55,
+
+
+    },
+    cupStyle: {
+        height: 80,
+        width: 50
+    }
 
 });
 
