@@ -13,8 +13,8 @@ const LocationPage = props => {
         region={{
           latitude: 49.2069,
           longitude: -122.9111,
-          latitudeDelta: 0.0043,
-          longitudeDelta: 0.015
+          latitudeDelta: 0.0145,
+          longitudeDelta: 0.0015
         }}
       >
 

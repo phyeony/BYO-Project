@@ -13,10 +13,10 @@ const HomePage = props => {
                     <View style={{marginLeft: 20}}>
                         <View style={styles.textContainer}>
                             <Text style={styles.numberOfCupsLeft}>4</Text>
-                            <Image style={styles.cupStyle} source={require("../assets/coffee_cup.png")}></Image>
+                            <Image style={styles.cupStyle} source={require("../assets/water_cup.png")}></Image>
                         </View>
-                        <Text style={{fontSize: 20, fontWeight:'900'}}>Until Next Tree</Text>
-                        <Text style={{color: '#8CC63F',fontSize: 15, fontWeight:'500'}}>You've planted 3 trees so far!</Text>
+                        <Text style={{fontSize: 20, fontWeight:'900',marginLeft: 10}}>Until Next Tree</Text>
+                        <Text style={{color: '#8CC63F',fontSize: 15, fontWeight:'500',marginLeft: 10}}>You've planted 3 trees so far!</Text>
                     </View>
                     <Image style={styles.treeStyle} source={require("../assets/tree_img.png")}></Image>
 
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         flexDirection: 'row',
+        height: 100
     },
     treeStyle: {
         marginRight: 30
@@ -121,12 +122,13 @@ const styles = StyleSheet.create({
     },
     numberOfCupsLeft: {
         fontSize: 55,
-
+        marginLeft: 10
 
     },
     cupStyle: {
-        height: 80,
-        width: 50
+        height: 90,
+        width: 42,
+        marginLeft: 13
     }
 
 });
