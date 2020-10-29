@@ -1,6 +1,6 @@
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 import Inputs from '../components/Input';
@@ -18,21 +18,24 @@ const Login = props => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.logoContainer}>
+        <Image source={require("../assets/logo_with_BYO.png")}></Image>
+      </View>
+
       <Text style={styles.logo}>Bring Your Own Cup</Text>
 
-      
       <Inputs //style={styles.inputView}
-         // placeholder="Username..."
-         // placeholderTextColor='#003f5c'
-          //onChangeText={text => setUsername(text)}
+      // placeholder="Username..."
+      // placeholderTextColor='#003f5c'
+      //onChangeText={text => setUsername(text)}
       />
       <Card style={styles.inputView} >
         <TextInput
-          
+
           style={styles.inputText}
           placeholder="Username..."
           placeholderTextColor='#003f5c'
-          onChangeText={text => setUsername(text)}/>
+          onChangeText={text => setUsername(text)} />
       </Card>
 
       <Card style={styles.inputView} >
@@ -45,12 +48,12 @@ const Login = props => {
       </Card>
 
       <TouchableOpacity
-          style={styles.loginBtn}
-          onPress={() => props.navigation.navigate('Bottom Tabs') }
+        style={styles.loginBtn}
+        onPress={() => props.navigation.navigate('Bottom Tabs')}
       >
-          <Text style={styles.loginText}>LOGIN</Text>
+        <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
-     
+
 
 
       <View style={styles.textsContainer}>
@@ -78,7 +81,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
     color: "black",
-    marginBottom: 40
+    marginBottom: 20,
+    marginTop: 10
   },
   inputView: {
     width: "80%",
@@ -118,8 +122,11 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black'
+  },
+  logoContainer:{
+    
   }
 
-}); 
+});
 
 export default Login;

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     scanBtn: {
         position: "absolute",
-        top: 575,
+        top: 500,
         left: 260,
 
         width: "30%",
