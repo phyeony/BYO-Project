@@ -38,6 +38,7 @@ const RewardsList = () => {
         <View style= {{alignItems:'center'}}>
             {rewards.map(rewards => (
                 <Rewards
+                    key={rewards.id}
                     storeName={rewards.storeName}
                     promoDetails={rewards.promoDetails}
                     remainingStock={rewards.remainingStock}
