@@ -18,7 +18,7 @@ const HomePage = props => {
                         <Text style={{fontSize: 20, fontWeight:'900',marginLeft: 10}}>Until Next Tree</Text>
                         <Text style={{color: '#8CC63F',fontSize: 15, fontWeight:'500',marginLeft: 10}}>You've planted 3 trees so far!</Text>
                     </View>
-                    <Image style={styles.treeStyle} source={require("../assets/tree_img.png")}></Image>
+                    <Image style={{marginRight:30}} source={require("../assets/tree_img.png")}></Image>
 
                 </View>
 
@@ -26,7 +26,7 @@ const HomePage = props => {
                     <Text style={styles.Text}>Reward Library >> </Text>
                 </TouchableOpacity>
 
-                <View style={styles.cardContainer}>
+                <View style={{alignItems:'center'}}>
                     <Card style={styles.card} >
                         <Text style={styles.Text}>
                             Your Impact</Text>
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 500,
         left: 260,
-
         width: "30%",
         backgroundColor: Colors.primary,
         borderRadius: 20,
@@ -96,34 +95,22 @@ const styles = StyleSheet.create({
         width: "90%",
         borderRadius: 20,
     },
-    cardContainer: {
-        alignItems: "center",
 
-
-    },
     firstView: {
         flex: 1,
         flexDirection: 'row',
         height: 200,
-
         backgroundColor: 'rgba(255, 192, 97, 0.3)',
         justifyContent: 'space-between',
         alignItems: 'center',
-        
-
     },
     textContainer: {
         flexDirection: 'row',
         height: 100
     },
-    treeStyle: {
-        marginRight: 30
-        
-    },
     numberOfCupsLeft: {
         fontSize: 55,
         marginLeft: 10
-
     },
     cupStyle: {
         height: 90,

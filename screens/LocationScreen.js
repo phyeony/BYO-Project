@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Colors from '../constants/colors';
-import Card from '../components/Card';
+
+import StoresList from '../components/StoresList';
 
 const LocationPage = props => {
   return (
@@ -20,44 +21,7 @@ const LocationPage = props => {
 
       </MapView>
       <ScrollView>
-        <View style={styles.cardContainer}>
-
-          <Card style={styles.card} >
-            <Text style={styles.storeNameText}>Starbucks</Text>
-            <Text style={styles.promotionDetailText}>1234 Abc Street</Text>
-            <View style={styles.claimContainer}>
-              <Text style={styles.claimText}>Open</Text>
-              <Text style={styles.stockText}>(604)-123-4567</Text>
-            </View>
-          </Card>
-          <Card style={styles.card} >
-            <Text style={styles.storeNameText}>Surge Cafe</Text>
-            <Text style={styles.promotionDetailText}>1234 Abc Street</Text>
-            <View style={styles.claimContainer}>
-              <Text style={styles.claimText}>Open</Text>
-              <Text style={styles.stockText}>(604)-123-4567</Text>
-            </View>
-          </Card>
-          <Card style={styles.card} >
-            <Text style={styles.storeNameText}>BYO store</Text>
-            <Text style={styles.promotionDetailText}>1234 Abc Street</Text>
-            <View style={styles.claimContainer}>
-              <Text style={styles.closedText}>Closed</Text>
-              <Text style={styles.stockText}>Opens at 9am Mon | (604)-123-4567</Text>
-            </View>
-          </Card>
-          <Card style={styles.card} >
-            <Text style={styles.storeNameText}>Dummy Store</Text>
-            <Text style={styles.promotionDetailText}>1234 Abc Street</Text>
-            <View style={styles.claimContainer}>
-              <Text style={styles.closedText}>Closed</Text>
-              <Text style={styles.stockText}>Opens at 9am Mon | (604)-123-4567</Text>
-            </View>
-          </Card>
-         
-         
-         
-        </View>
+        <StoresList />
       </ScrollView>
 
     </View>
@@ -94,7 +58,7 @@ const styles = StyleSheet.create({
   closedText: {
     color: 'red',
     fontSize: 19,
-    flex:1
+    flex: 1
   },
   stockText: {
     color: 'black',
