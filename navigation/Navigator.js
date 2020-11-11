@@ -11,12 +11,8 @@ import LocationScreen from '../screens/LocationScreen';
 import SettingScreen from '../screens/SettingScreen';
 import Colors from '../constants/colors';
 
-
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-
-
-
 
 //TODO: Create a Stack navigator for each tab screens.
 const HomeStackScreen = () => {
