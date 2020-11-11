@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
     },
     scanBtn: {
         position: "absolute",
-        top: 500,
-        left: 260,
+        top: "85 %",
+        left: "65%",
         width: "30%",
         backgroundColor: Colors.primary,
         borderRadius: 20,

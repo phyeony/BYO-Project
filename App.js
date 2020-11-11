@@ -1,7 +1,8 @@
 import 'react-native-gesture-handler';
 
-import React from 'react';
+import React, { createContext } from 'react';
 import { StyleSheet} from 'react-native';
+import {AsyncStorage} from '@react-native-async-storage/async-storage'
 
 import LoginScreen from './screens/LoginScreen';
 
@@ -12,7 +13,9 @@ import {createBottomTabs, getHeaderTitle} from './navigation/Navigator';
 
 const MainStack = createStackNavigator();
 
-export default function App() {
+
+
+const App = () => {
 
   return (
     //TODO: What's the diff between children and component?
@@ -40,3 +43,5 @@ const styles = StyleSheet.create({
 
   },
 });
+
+export default App;
