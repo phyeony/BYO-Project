@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -112,7 +112,7 @@ export const createBottomTabs = () => {
             }}
         />
 
-        <Tabs.Screen
+        {/* <Tabs.Screen
             name="Add Documents"
             component={AddDocuments}
             options={{
@@ -121,7 +121,7 @@ export const createBottomTabs = () => {
                     <Ionicons name="md-settings" size={26} color={color} />
                 ),
             }}
-        />
+        /> */}
 
     </Tabs.Navigator >
 }
