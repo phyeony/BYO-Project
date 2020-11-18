@@ -14,7 +14,6 @@ import Colors from '../constants/colors';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-import AddDocuments from '../screens/AddDocuments';
 
 
 
@@ -112,7 +111,7 @@ export const createBottomTabs = () => {
             }}
         />
 
-        <Tabs.Screen
+        {/* <Tabs.Screen
             name="Add Documents"
             component={AddDocuments}
             options={{
@@ -121,7 +120,7 @@ export const createBottomTabs = () => {
                     <Ionicons name="md-settings" size={26} color={color} />
                 ),
             }}
-        />
+        /> */}
 
     </Tabs.Navigator >
 }
