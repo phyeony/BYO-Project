@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -14,7 +14,6 @@ import Colors from '../constants/colors';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-import AddDocuments from '../screens/AddDocuments';
 
 
 
