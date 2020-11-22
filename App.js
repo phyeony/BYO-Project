@@ -13,6 +13,8 @@ import { createBottomTabs, getHeaderTitle } from './navigation/Navigator';
 import { firebaseInstance } from "./Firebase";
 import "firebase/firestore";
 
+
+
 const MainStack = createStackNavigator();
 
 console.log(firebaseInstance);

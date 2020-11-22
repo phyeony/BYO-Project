@@ -1,28 +1,90 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Colors from '../constants/colors';
 
 import StoresList from '../components/StoresList';
+import * as Location from 'expo-location';
 
-const LocationPage = props => {
+import { GeoFirestore } from 'geofirestore';
+
+
+const LocationPage = () => {
+
+  const [mapRegion, setMapRegion] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    getLocationAsync();
+  }, []);
+
+  const getLocationAsync = async () => {
+    let { status } = await Location.requestPermissionsAsync();
+    if (status !== 'granted') {
+      setErrorMsg('Permission to access location was denied');
+    }
+    else if (status === 'granted') {
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      console.log(location);
+      console.log(JSON.stringify(location));
+      setMapRegion({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0145,
+        longitudeDelta: 0.0015
+      })
+
+    }
+  }
+
+  const handleMapRegionChange = mapRegion => {
+    console.log(mapRegion);
+    setMapRegion(mapRegion);
+  };
+
+  // let text = 'Waiting..';
+  // if (errorMsg) {
+  //   text = errorMsg;
+  // } else if (location) {
+  //   text = JSON.stringify(location);
+  // }
+
+  // latitude: 49.2069,
+  // longitude: -122.9111,
+  // latitudeDelta: 0.0145,
+  // longitudeDelta: 0.0015
   return (
     <View style={styles.container}>
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
-        region={{
-          latitude: 49.2069,
-          longitude: -122.9111,
-          latitudeDelta: 0.0145,
-          longitudeDelta: 0.0015
-        }}
+        region={mapRegion}
+   
       >
+        {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+          const coords = {
+            latitude: marker.latitude,
+            longitude: marker.longitude,
+          };
+
+          const metadata = `Status: ${marker.statusValue}`;
+
+          return (
+            <Marker
+              key={index}
+              coordinate={coords}
+              title={marker.stationName}
+              description={metadata}
+            />
+          );
+        })}
 
       </MapView>
-      <ScrollView>
+      <FlatList>
         <StoresList />
-      </ScrollView>
+      </FlatList>
 
     </View>
   );
