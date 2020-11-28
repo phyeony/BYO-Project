@@ -4,7 +4,8 @@ import {GeoFireStore} from './Firebase';
 const geoCollection = GeoFireStore.collection('stores');
 
 //Create a GeoWriteBatch reference
-const geoBatch = GeoFireStore.batch();
+const geoBatch = GeoFireStore.batch
+
 
 // //Set the value of Starbucks 1 location East Columbia
 // var Store1 = geoCollection.doc("store1");

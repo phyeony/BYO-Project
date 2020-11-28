@@ -20,7 +20,6 @@ const MainStack = createStackNavigator();
 console.log(firebaseInstance);
 const App = () => {
 
-  console.log(firebaseInstance);
  
   return (
 

@@ -6,17 +6,32 @@ import Colors from '../constants/colors';
 import StoresList from '../components/StoresList';
 import * as Location from 'expo-location';
 
-import { GeoFirestore } from 'geofirestore';
+import { GeoFireStore, firebaseInstance } from '../Firebase'
+import { YellowBox } from 'react-native';
+import _ from 'lodash';
+
+YellowBox.ignoreWarnings(['Setting a timer']);
+const _console = _.clone(console);
+console.warn = message => {
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
+};
+
 
 
 const LocationPage = () => {
 
+  const [stores, setStores] = useState(null);
   const [mapRegion, setMapRegion] = useState(null);
   const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+ 
+
 
   useEffect(() => {
     getLocationAsync();
+
+
   }, []);
 
   const getLocationAsync = async () => {
@@ -36,34 +51,52 @@ const LocationPage = () => {
         longitudeDelta: 0.0015
       })
 
+      console.log("location: ", location);
+      getNearByStores();
     }
+   
   }
+
+  const getNearByStores = () => {
+    const geoCollection = GeoFireStore.collection('stores');
+    console.log("location: ", {location});
+
+    geoCollection
+      .near({
+        center: new firebaseInstance.firestore.GeoPoint(
+          location.coords.latitude,
+          location.coords.longitude
+        ),
+        radius: 1000
+      })
+      .limit(15)
+      .get()
+      .then((querySnapshot) => {
+        console.log(querySnapshot);
+        for (let i = 0; i < querySnapshot.docs.length; i++) {
+          console.log("Doc id: " ,querySnapshot.docs[i].id);
+          console.log("Doc data: " ,querySnapshot.docs[i].data());
+          //setStores(querySnapshot.docs[i].data());
+          console.log("Saved store id:" ,stores[i]);
+        }
+      });
+     
+  }
+
 
   const handleMapRegionChange = mapRegion => {
     console.log(mapRegion);
     setMapRegion(mapRegion);
   };
 
-  // let text = 'Waiting..';
-  // if (errorMsg) {
-  //   text = errorMsg;
-  // } else if (location) {
-  //   text = JSON.stringify(location);
-  // }
-
-  // latitude: 49.2069,
-  // longitude: -122.9111,
-  // latitudeDelta: 0.0145,
-  // longitudeDelta: 0.0015
   return (
     <View style={styles.container}>
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         region={mapRegion}
-   
       >
-        {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+        {/* {isLoading ? null : markers.map((marker, index) => {
           const coords = {
             latitude: marker.latitude,
             longitude: marker.longitude,
@@ -79,9 +112,12 @@ const LocationPage = () => {
               description={metadata}
             />
           );
-        })}
+        })} */}
+
+        {/* {location? getNearByStores():null} */}
 
       </MapView>
+
       <FlatList>
         <StoresList />
       </FlatList>
