@@ -7,10 +7,11 @@ import StoresList from '../components/StoresList';
 import * as Location from 'expo-location';
 
 import { GeoFireStore, firebaseInstance } from '../Firebase'
-import { YellowBox } from 'react-native';
+import { LogBox } from 'react-native';
 import _ from 'lodash';
+import { ScrollView } from 'react-native-gesture-handler';
 
-YellowBox.ignoreWarnings(['Setting a timer']);
+LogBox.ignoreLogs(['Setting a timer']);
 const _console = _.clone(console);
 console.warn = message => {
   if (message.indexOf('Setting a timer') <= -1) {
@@ -22,16 +23,15 @@ console.warn = message => {
 
 const LocationPage = () => {
 
-  const [stores, setStores] = useState(null);
+  const [stores, setStores] = useState([]);
   const [mapRegion, setMapRegion] = useState(null);
   const [location, setLocation] = useState(null);
+  const [isLoading,setIsLoading] = useState(true);
+  const localStoreData = [];
  
-
 
   useEffect(() => {
     getLocationAsync();
-
-
   }, []);
 
   const getLocationAsync = async () => {
@@ -40,26 +40,29 @@ const LocationPage = () => {
       setErrorMsg('Permission to access location was denied');
     }
     else if (status === 'granted') {
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-      console.log(location);
-      console.log(JSON.stringify(location));
-      setMapRegion({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-        latitudeDelta: 0.0145,
-        longitudeDelta: 0.0015
-      })
 
-      console.log("location: ", location);
-      getNearByStores();
+      try {
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+        console.log("location: ", location);
+        //console.log(JSON.stringify(location));
+        setMapRegion({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.0145,
+          longitudeDelta: 0.0015
+        })
+        getNearByStores(location);
+      } catch (err) {
+        console.log("error: ",err);
+      }  
     }
-   
   }
 
-  const getNearByStores = () => {
+  const getNearByStores = (location) => {
     const geoCollection = GeoFireStore.collection('stores');
-    console.log("location: ", {location});
+    console.log("location: ", location);
+
 
     geoCollection
       .near({
@@ -67,20 +70,28 @@ const LocationPage = () => {
           location.coords.latitude,
           location.coords.longitude
         ),
-        radius: 1000
+        radius: 200
       })
       .limit(15)
       .get()
       .then((querySnapshot) => {
-        console.log(querySnapshot);
-        for (let i = 0; i < querySnapshot.docs.length; i++) {
-          console.log("Doc id: " ,querySnapshot.docs[i].id);
-          console.log("Doc data: " ,querySnapshot.docs[i].data());
-          //setStores(querySnapshot.docs[i].data());
-          console.log("Saved store id:" ,stores[i]);
+   
+        console.log("docs", querySnapshot.docs);
+      
+        
+        console.log(stores);
+        for (let i = querySnapshot.docs.length-1; i >=0 ; i--) {
+          console.log("Doc id: ", querySnapshot.docs[i].id);
+          console.log("Doc data: ", querySnapshot.docs[i].data());
+          localStoreData.push(querySnapshot.docs[i].data())  
         }
+        console.log("local store data: ", localStoreData);
+        // setStores([...stores,...localStoreData]);
+        setStores(localStoreData);
+        setIsLoading(false);
       });
-     
+      
+
   }
 
 
@@ -90,39 +101,40 @@ const LocationPage = () => {
   };
 
   return (
+   
     <View style={styles.container}>
+   
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         region={mapRegion}
       >
-        {/* {isLoading ? null : markers.map((marker, index) => {
+        {isLoading? null :stores.map((store,index) => {
           const coords = {
-            latitude: marker.latitude,
-            longitude: marker.longitude,
+            latitude: store.coordinates.latitude,
+            longitude: store.coordinates.longitude,
           };
-
-          const metadata = `Status: ${marker.statusValue}`;
 
           return (
             <Marker
               key={index}
               coordinate={coords}
-              title={marker.stationName}
-              description={metadata}
+              title={store.name}
+              description={store.phone_number}
             />
           );
-        })} */}
+        })}
 
-        {/* {location? getNearByStores():null} */}
+    
 
       </MapView>
-
-      <FlatList>
-        <StoresList />
-      </FlatList>
+      <ScrollView>
+        {console.log("stores data in ScrollView2 :",stores)}
+        <StoresList stores={stores} />
+      </ScrollView>
 
     </View>
+     
   );
 }
 
