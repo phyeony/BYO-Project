@@ -1,7 +1,7 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app";
 import "firebase/firestore";
-
+import * as geofirestore from 'geofirestore';
 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -23,11 +23,12 @@ firebase.initializeApp(firebaseConfig);
 
 
 export const firebaseInstance = firebase;
+
+//Create a Firestore reference
 export const dbService = firebase.firestore();
 
-
-
-
+//Create a GeoFireStroe reference
+export const GeoFireStore = geofirestore.initializeApp(dbService);
 
 
 
