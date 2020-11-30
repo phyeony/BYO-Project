@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 
 import React, { createContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { AsyncStorage } from '@react-native-async-storage/async-storage'
+import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 import LoginScreen from './screens/LoginScreen';
 

@@ -10,15 +10,15 @@ const HomePage = props => {
         <View style={styles.container}>
             <ScrollView>
                 <View style={styles.firstView}>
-                    <View style={{marginLeft: 20}}>
+                    <View style={{ marginLeft: 20 }}>
                         <View style={styles.textContainer}>
                             <Text style={styles.numberOfCupsLeft}>4</Text>
                             <Image style={styles.cupStyle} source={require("../assets/water_cup.png")}></Image>
                         </View>
-                        <Text style={{fontSize: 20, fontWeight:'900',marginLeft: 10}}>Until Next Tree</Text>
-                        <Text style={{color: '#8CC63F',fontSize: 15, fontWeight:'500',marginLeft: 10}}>You've planted 3 trees so far!</Text>
+                        <Text style={{ fontSize: 20, fontWeight: '900', marginLeft: 10 }}>Until Next Tree</Text>
+                        <Text style={{ color: '#8CC63F', fontSize: 15, fontWeight: '500', marginLeft: 10 }}>You've planted 3 trees so far!</Text>
                     </View>
-                    <Image style={{marginRight:30}} source={require("../assets/tree_img.png")}></Image>
+                    <Image style={{ marginRight: 30 }} source={require("../assets/tree_img.png")}></Image>
 
                 </View>
 
@@ -26,14 +26,30 @@ const HomePage = props => {
                     <Text style={styles.Text}>Reward Library >> </Text>
                 </TouchableOpacity>
 
-                <View style={{alignItems:'center'}}>
+                <View style={{ alignItems: 'center' }}>
                     <Card style={styles.card} >
+                        <Image source={require("../assets/yourImpactCard.png")}></Image>
                         <Text style={styles.Text}>
-                            Your Impact</Text>
+                            Your Impact
+                        </Text>
+                        <Text style={{ color: '#8CC63F', fontSize: 15, fontWeight: '500' }}>
+                            You've saved 6cups!
+                        </Text>
                     </Card>
                     <Card style={styles.card} >
+                        <View style={styles.textContainer}>
+                            <Image style={{ marginLeft: 10 }} source={require("../assets/trees.png")}></Image>
+                            <Image style={styles.byoImpactCup} source={require("../assets/singleCup.png")}></Image>
+                        </View>
+                        <View style={{flexDirection: 'row',}}>
+                            <Text style={{marginLeft: 20}}>51 Trees Planted</Text>
+                            <Text style={{marginLeft: 85}}>99 Cups Saved</Text>
+                        </View>
                         <Text style={styles.Text}>
-                            Number of trees planted:
+                            BYO's Impact
+                        </Text>
+                        <Text style={{ color: '#8CC63F', fontSize: 15, fontWeight: '500' }}>
+                            Hurray for collective impact!
                         </Text>
                     </Card>
                     <Card style={styles.card} >
@@ -89,7 +105,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     card: {
-        height: 200,
+        height: 215,
         marginTop: 20,
         marginBottom: 30,
         width: "90%",
@@ -107,6 +123,10 @@ const styles = StyleSheet.create({
     textContainer: {
         flexDirection: 'row',
         height: 100
+    },
+    byoImpactCup: {
+        width: 100,
+        marginLeft: 60
     },
     numberOfCupsLeft: {
         fontSize: 55,

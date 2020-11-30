@@ -11,8 +11,8 @@ const Rewards = (props) => {
             <Text style={styles.promotionDetailText}>{props.promoDetail}</Text>
             <View style={styles.claimContainer}>
                 <Text style={styles.claimText}>Claim</Text>
-                <Text style={styles.stockText}>{props.remainingStock}</Text>
-                <Text style={styles.priceText}>{props.price}</Text>
+                <Text style={styles.stockText}>{props.remainingStock}/{props.totalStock}{' '}remaining</Text>
+                <Text style={styles.priceText}>{props.price}{' '}points</Text>
             </View>
         </Card>
     );

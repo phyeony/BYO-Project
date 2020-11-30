@@ -3,45 +3,20 @@ import { View } from 'react-native';
 
 import Rewards from './Rewards';
 
-const RewardsList = () => {
+const RewardsList = (rewards) => {
 
-    const [rewards, setRewards] = useState([
-        {
-            storeName: 'Starbucks',
-            promoDetails: '50% off Grande Latte',
-            //isClaimAble: 'false',
-            remainingStock: '2/10 remaining',
-            price: '8points',
-            id: 12324
-        },
-        {
-            storeName: 'Starbucks',
-            promoDetails: '50% off Grande Latte',
-            //isClaimAble: 'false',
-            remainingStock: '2/10 remaining',
-            price: '8points',
-            id: 2313
-        },
-        {
-            storeName: 'Starbucks',
-            promoDetails: '50% off Grande Latte',
-            //isClaimAble: 'false',
-            remainingStock: '2/10 remaining',
-            price: '8123points',
-            id: 1233453
-        },
-
-
-    ]);
 
     return (
+        
         <View style= {{alignItems:'center'}}>
-            {rewards.map(rewards => (
+            {console.log("rewards",rewards)}
+            {rewards.rewards.map((rewards,index) => (
                 <Rewards
-                    key={rewards.id}
-                    storeName={rewards.storeName}
-                    promoDetails={rewards.promoDetails}
-                    remainingStock={rewards.remainingStock}
+                    key={index}
+                    storeName={rewards.store_name}
+                    promoDetail={rewards.promo_detail}
+                    remainingStock={rewards.remaining_stock}
+                    totalStock={rewards.total_stock}
                     price={rewards.price}
                 />
             ))}
