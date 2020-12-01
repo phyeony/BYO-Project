@@ -29,6 +29,7 @@ const RewardLibrary = props => {
   const getRewards = () => {
     const rewardsCollection = dbService
       .collection('rewards')
+      .where('is_claimed','==',false)
       .where('is_redeemed','==',false)
       .orderBy('price','asc')
       .orderBy('remaining_stock','desc')    
