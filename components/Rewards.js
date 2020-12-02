@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import Card from './Card';
 import Colors from '../constants/colors';
+import ScanPageScreen from '../screens/ScanPageScreen';
+import { useNavigation } from '@react-navigation/native';
+
 
 const Rewards = (props) => {
     const [userPoint, setUserPoints] = useState(5);
+    const navigation = useNavigation();
+
 
     const createClaimConfirmAlert = () =>
         Alert.alert(
@@ -19,13 +24,7 @@ const Rewards = (props) => {
                 {
                     text: "Claim",
                     onPress: () => {
-                        if (userPoint < props.price) {
-                            console.log('not enough points');
-                        } else {
-                            console.log('enough points!')
-                            //wrtie userpoints in firestore
-                        }
-                        //TODO: get user's points and compare with the price
+                        //TODO: deduct userPoint
                     }
                 }
             ],
@@ -41,12 +40,7 @@ const Rewards = (props) => {
                     onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
                 },
-                {
-                    text: "Redeem",
-                    onPress: () => {
-                        //TODO: is redeemed to true
-                    }
-                }
+
             ],
             { cancelable: false }
         );
@@ -57,7 +51,10 @@ const Rewards = (props) => {
             <Text style={styles.promotionDetailText}>{props.promoDetail}</Text>
             <View style={styles.claimContainer}>
                 {props.isClaimed ?
-                    <TouchableOpacity onPress={createRedeemConfirmAlert} style={{ marginRight: 10 }}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('ScanRewards',
+                            { storeName: props.storeName, promoDetail: props.promoDetail })}
+                        style={{ marginRight: 10 }}>
                         <Text style={styles.claimText}>Redeem</Text>
                     </TouchableOpacity> : ((userPoint < props.price) ? <Text style={styles.notEnoughPointsText}>Claim</Text>
                         :
@@ -95,7 +92,7 @@ const styles = StyleSheet.create({
         fontSize: 19,
         flex: 1,
     },
-    
+
     notEnoughPointsText: {
         color: 'grey',
         fontSize: 19,
