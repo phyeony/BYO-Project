@@ -37,7 +37,7 @@ const RewardLibrary = props => {
     <View style={styles.container}>
     
       <ScrollView>
-        <RewardsList rewards={rewards}/>
+        <RewardsList rewards={rewards} />
       </ScrollView>
     </View>
   );

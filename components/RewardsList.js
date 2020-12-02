@@ -18,6 +18,8 @@ const RewardsList = (rewards) => {
                     remainingStock={rewards.remaining_stock}
                     totalStock={rewards.total_stock}
                     price={rewards.price}
+                    isClaimed={rewards.is_claimed}
+            
                 />
             ))}
         </View>

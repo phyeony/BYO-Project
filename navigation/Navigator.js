@@ -11,6 +11,8 @@ import RewardLibraryScreen from '../screens/RewardLibraryScreen';
 import RedeemLibraryScreen from '../screens/RedeemLibraryScreen';
 import LocationScreen from '../screens/LocationScreen';
 import SettingScreen from '../screens/SettingScreen';
+import ScanRewardsScreen from '../screens/ScanRewardsScreen';
+import ScanPointsScreen from '../screens/ScanPointsScreen'
 import Colors from '../constants/colors';
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -26,6 +28,7 @@ const HomeStackScreen = () => {
     return (
         <HomeStack.Navigator>
             <HomeStack.Screen name="Home" component={HomePageScreen} />
+            <HomeStack.Screen name="ScanPoints" component={ScanPointsScreen} />
         </HomeStack.Navigator>
     );
 }
@@ -44,6 +47,7 @@ const RedeemStackScreen = () => {
     return (
         <RedeemStack.Navigator>
             <RedeemStack.Screen name="Redeem" component={RedeemLibraryScreen} />
+            <RedeemStack.Screen name="ScanRewards" component={ScanRewardsScreen} />
         </RedeemStack.Navigator>
     );
 }

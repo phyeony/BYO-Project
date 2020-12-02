@@ -41,9 +41,9 @@ const HomePage = props => {
                             <Image style={{ marginLeft: 10 }} source={require("../assets/trees.png")}></Image>
                             <Image style={styles.byoImpactCup} source={require("../assets/singleCup.png")}></Image>
                         </View>
-                        <View style={{flexDirection: 'row',}}>
-                            <Text style={{marginLeft: 20}}>51 Trees Planted</Text>
-                            <Text style={{marginLeft: 85}}>99 Cups Saved</Text>
+                        <View style={{ flexDirection: 'row', }}>
+                            <Text style={{ marginLeft: 20 }}>51 Trees Planted</Text>
+                            <Text style={{ marginLeft: 85 }}>99 Cups Saved</Text>
                         </View>
                         <Text style={styles.Text}>
                             BYO's Impact
@@ -62,7 +62,9 @@ const HomePage = props => {
 
             </ScrollView>
 
-            <TouchableOpacity style={styles.scanBtn}>
+            <TouchableOpacity
+                style={styles.scanBtn}
+                onPress={()=>props.navigation.navigate("ScanPoints")}>
                 <Text style={styles.scanText}>SCAN</Text>
             </TouchableOpacity>
 
