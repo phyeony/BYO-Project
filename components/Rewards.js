@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import Card from './Card';
 import Colors from '../constants/colors';
-import ScanPageScreen from '../screens/ScanPageScreen';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -52,8 +51,10 @@ const Rewards = (props) => {
             <View style={styles.claimContainer}>
                 {props.isClaimed ?
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('ScanRewards',
-                            { storeName: props.storeName, promoDetail: props.promoDetail })}
+                        onPress={() => navigation.navigate(
+                            'ScanRewards',
+                            { storeName: props.storeName, promoDetail: props.promoDetail }
+                        )}
                         style={{ marginRight: 10 }}>
                         <Text style={styles.claimText}>Redeem</Text>
                     </TouchableOpacity> : ((userPoint < props.price) ? <Text style={styles.notEnoughPointsText}>Claim</Text>
