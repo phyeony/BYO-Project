@@ -4,7 +4,6 @@ import { Button } from 'react-native-paper';
 import Colors from '../constants/colors';
 import Card from '../components/Card';
 
-
 const HomePage = props => {
     return (
         <View style={styles.container}>

@@ -53,10 +53,10 @@ const RewardLibrary = props => {
       <View style={styles.textView}>
         <Text style={{ fontSize:20 }}>Your Points: {userPoints}</Text>
       </View>
-      <View style={{flexDirection: 'row', justifyContent:'center'}}>
+      {/* <View style={{flexDirection: 'row', justifyContent:'center'}}>
         <Button style={{}} onPress={incrementCount}>+</Button>
         <Button onPress={decrementCount}>-</Button>
-      </View>
+      </View> */}
       <ScrollView>
         <RewardsList rewards={rewards}/>
       </ScrollView>

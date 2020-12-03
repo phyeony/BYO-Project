@@ -6,7 +6,8 @@ import Colors from '../constants/colors';
 import StoresList from '../components/StoresList';
 import * as Location from 'expo-location';
 
-import { GeoFireStore, firebaseInstance } from '../Firebase'
+import { Firebase } from '../Firebase';
+import {GeoFirestore} from 'geofirestore';
 import { LogBox } from 'react-native';
 import _ from 'lodash';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -20,7 +21,6 @@ console.warn = message => {
 };
 
 
-
 const LocationPage = () => {
 
   const [stores, setStores] = useState([]);
@@ -28,6 +28,7 @@ const LocationPage = () => {
   const [location, setLocation] = useState(null);
   const [isLoading,setIsLoading] = useState(true);
   const localStoreData = [];
+ 
  
 
   useEffect(() => {
@@ -60,13 +61,14 @@ const LocationPage = () => {
   }
 
   const getNearByStores = (location) => {
-    const geoCollection = GeoFireStore.collection('stores');
+    console.log("firebase",Firebase.firestore());
+    const geofirestore = new GeoFirestore(Firebase.firestore());
+    const geoCollection = geofirestore.collection('stores');
     console.log("location: ", location);
-
 
     geoCollection
       .near({
-        center: new firebaseInstance.firestore.GeoPoint(
+        center: new Firebase.firestore.GeoPoint(
           location.coords.latitude,
           location.coords.longitude
         ),

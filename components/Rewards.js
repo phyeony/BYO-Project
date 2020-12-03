@@ -4,7 +4,6 @@ import Card from './Card';
 import Colors from '../constants/colors';
 import { useNavigation } from '@react-navigation/native';
 
-
 const Rewards = (props) => {
     const [userPoint, setUserPoints] = useState(5);
     const navigation = useNavigation();
