@@ -1,35 +1,57 @@
-import { setStatusBarBackgroundColor } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useContext } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Image
+} from 'react-native';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 import Inputs from '../components/Input';
+import { Firebase } from '../Firebase';
+import { TextInput } from 'react-native-paper';
 
-
-
-//export default function App()
-
-//Set Input.js to textInputs
+import mainContext from '../context/mainContext';
 
 const Login = props => {
+  const { handleLogin } = useContext(mainContext);
 
-  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   return (
-    <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image source={require("../assets/logo_with_BYO.png")}></Image>
-      </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <View style={styles.logoContainer}>
+          <Image source={require("../assets/logo_with_BYO.png")}></Image>
+        </View>
 
-      <Text style={styles.logo}>Bring Your Own Cup</Text>
+        <Text style={styles.logo}>Bring Your Own Cup</Text>
 
-      <Inputs //style={styles.inputView}
-      // placeholder="Username..."
-      // placeholderTextColor='#003f5c'
-      //onChangeText={text => setUsername(text)}
-      />
-      <Card style={styles.inputView} >
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Email address"
+            onChangeText={(email) => setEmail(email)}
+            value={email}
+            label="Email"
+            keyboardType={'email-address'}
+            mode="outlined"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Password"
+            onChangeText={(password) => setPassword(password)}
+            value={password}
+            secureTextEntry={true}
+            label="Password"
+            mode="outlined"
+          />
+        </View>
+        {/* <Card style={styles.inputView} >
         <TextInput
 
           style={styles.inputText}
@@ -45,27 +67,26 @@ const Login = props => {
           placeholder="Password..."
           placeholderTextColor="#003f5c"
           onChangeText={text => setPassword(text)} />
-      </Card>
+      </Card> */}
 
-      <TouchableOpacity
-        style={styles.loginBtn}
-        onPress={() => props.navigation.navigate('Bottom Tabs')}
-      >
-        <Text style={styles.loginText}>LOGIN</Text>
-      </TouchableOpacity>
-
-
-
-      <View style={styles.textsContainer}>
-        <TouchableOpacity>
-          <Text style={styles.loginText}>Sign up</Text>
+        <TouchableOpacity
+          style={styles.loginBtn}
+          onPress={() => handleLogin(email, password)}
+        >
+          <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
-        <Text style={styles.text}> for an account |</Text>
-        <TouchableOpacity>
-          <Text style={styles.loginText}>    Forgot Password? </Text>
-        </TouchableOpacity>
+
+        <View style={styles.textsContainer}>
+          <TouchableOpacity>
+            <Text style={styles.loginText}>Sign up</Text>
+          </TouchableOpacity>
+          <Text style={styles.text}> for an account |</Text>
+          <TouchableOpacity>
+            <Text style={styles.loginText}>    Forgot Password? </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 
 }
@@ -76,6 +97,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  inputContainer: {
+    width: '80%',
+    marginBottom: 20,
   },
   logo: {
     fontWeight: "bold",
@@ -123,8 +148,8 @@ const styles = StyleSheet.create({
   text: {
     color: 'black'
   },
-  logoContainer:{
-    
+  logoContainer: {
+
   }
 
 });
